@@ -1,11 +1,15 @@
 package Servlets;
 
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,38 +27,54 @@ public class Exercicio8 extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        File f = new File("C:\\SENAC\\Exercicio7\\Exercicio7.csv");
         String p = request.getParameter("p");
-        
-        File arquivoCSV = new File("C:\\SENAC\\Exercicio7\\Exercicio7.csv");
-        try {
 
-            Scanner leitor = new Scanner(arquivoCSV);
-            String linhas = new String();
-            leitor.nextLine();
-            int i = 0;
-            while (leitor.hasNext()) {
-                linhas = leitor.nextLine();
-                String[] valores = linhas.split(";");
+        FileInputStream fin = new FileInputStream(f);
+        DataInputStream dis = new DataInputStream(fin);
+        byte[] dados = new byte[fin.available()];
+        dis.read(dados);
+        String conteudoArquivo = new String(dados);
+        ArrayList<Comentario> lista = new ArrayList<Comentario>();
+        String[] registros = conteudoArquivo.split("\n");
+        for (int i = 1; i < registros.length; i++) {
+            String registro = registros[i];
+            String[] campos = registro.split(";");
+            String login = campos[0];
+            String dataTxt = campos[1];
+            String titulo = campos[2];
+            String comentario = campos[3];
+            Comentario c = new Comentario(login, dataTxt, titulo, comentario);
+            lista.add(c);
+        }
 
-                request.setAttribute(i + "valores1", valores[0]);
-                request.setAttribute(i + "valores2", valores[1]);
-                request.setAttribute(i + "valores3", valores[2]);
-                request.setAttribute(i + "valores4", valores[3]);
-
-                i++;       
-
+        for (int i = 0; i < lista.size(); i++) {
+            for (int j = i + 1; j < lista.size(); j++) {
+                boolean condicao;
+                if (p.equals("1")) {
+                    condicao = lista.get(i).getDt().before(lista.get(j).getDt());
+                } else {
+                    condicao = lista.get(i).getDt().after(lista.get(j).getDt());
+                }
+                if (condicao) {
+                    Comentario temp = lista.get(i);
+                    lista.set(i, lista.get(j));
+                    lista.set(j, temp);
+                }
             }
-            request.setAttribute("linhas", new Integer(i));
-
-        } catch (FileNotFoundException e) {
 
         }
 
-        request.getRequestDispatcher("exercicio8.jsp").forward(request, response);
+        System.out.println("Tamanho: " + lista.size());
+        request.setAttribute("lista", lista);
 
+        RequestDispatcher rd = request.getRequestDispatcher("exercicio8.jsp");
+        rd.forward(request, response);
+
+        //response.sendRedirect("apresentacao_arquivo.jsp");
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

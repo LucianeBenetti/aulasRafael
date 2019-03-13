@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+    background-color: #FAF0E6;
+    clear: both;
+    border-collapse: collapse;
+    margin-top:100px;
+}
+
+tr, td {
+    border:1px 5F9EA0 solid;
+    padding: 10px;
+    text-align: center;
+    width: 20%;
+}
+
+.login{
+   color: #104E8B;
+   font-weight: bold;
+}
+
+.dataHora{
+    color: #708090;
+    font-style: italic;
+}
+.titulo{
+   white-space: normal;
+   font-weight: bold;
+}
+
+.comentario{
+    text-align: justify;    
+}
+

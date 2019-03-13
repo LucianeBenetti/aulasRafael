@@ -14,8 +14,6 @@
     </head>
     <body>
         <h1>Leitura de Arquivo CSV</h1>
-
-
         <form action="exercicio7" method="POST"> 
             <input type="submit" name="conteudo" value="Ler arquivo CSV">
         </form>
