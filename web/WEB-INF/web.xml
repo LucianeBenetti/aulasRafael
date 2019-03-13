@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>Exercicio1</servlet-name>
+        <servlet-class>Servlets.Exercicio1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Exercicio3</servlet-name>
+        <servlet-class>Servlets.Exercicio3</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Exercicio4</servlet-name>
+        <servlet-class>Servlets.Exercicio4</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Exercicio7</servlet-name>
+        <servlet-class>Servlets.Exercicio7</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Exercicio1</servlet-name>
+        <url-pattern>/exercicio1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Exercicio3</servlet-name>
+        <url-pattern>/exercicio3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Exercicio4</servlet-name>
+        <url-pattern>/Exercicio4</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Exercicio7</servlet-name>
+        <url-pattern>/exercicio7</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

@@ -1,0 +1,21 @@
+table {
+    width: 100%;
+    background-color: #FAF0E6;
+    clear: both;
+    margin-top: 1px;/*Margen superior com 1 pixel*/
+    float: left;/*propriedade indicando que a Área flutuará a esquerda*/
+    width: 45%; /*Ocupando 24% da largura total destinada para o corpo*/
+    height: 500px; /*Altura de 500 pixels*/
+}
+
+tr{
+    background-color: #FFC1C1;
+} 
+
+td {
+    background-color:cornsilk;    
+    border:1px 5F9EA0 solid;
+    padding: 10px;
+    text-align: center;
+    width: 20%;
+}
